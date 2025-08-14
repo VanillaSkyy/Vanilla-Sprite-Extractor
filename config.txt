@@ -1,0 +1,7 @@
+# Number of processes to use for extraction. Set 0 to use all available CPU cores. 
+# More cores = Faster Extraction. Test what works best for you. Be careful and monitor your CPU usage, using max cores while multi-tasking might crash your computer
+num_processes = 6
+
+# You can set your NIKKE settings.json path here and make the process fully automatic
+# If you let it empty, you'll need to manually enter the path the first time you run NIKKE. It will be saved so you won't need to manually set it again
+nikke_settings_json_path = D:\Nikke\NIKKE\game\nikke_Data\StreamingAssets\aa\settings.json
