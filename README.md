@@ -23,7 +23,7 @@ No unnecessary complexity — just point it to the game files, and get clean, re
 1. **Install Python**  
    Download and install Python 3.10 or higher from [python.org](https://www.python.org/downloads/).
 
-2. **Download the project**
+2. **Download the project**  
    Clone or download this repository:
    ```bash
    git clone https://github.com/VanillaSkyy/Vanilla-Sprite-Extractor.git
