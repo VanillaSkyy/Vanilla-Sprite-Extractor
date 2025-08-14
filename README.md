@@ -71,6 +71,11 @@ The program uses a `config.txt` file to store settings, such as:
 
 ---
 
+## ☕ Support the project
+If you want to support what I do, feel free to check my [Ko-fi Page](https://ko-fi.com/vaniillaskyy)
+
+---
+
 ## 📝 License
 This project is licensed under the **GPL-3.0 license**. See `LICENSE` for details.
 
