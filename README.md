@@ -84,5 +84,6 @@ This project is licensed under the **GPL-3.0 license**. See `LICENSE` for detail
 ## 💖 Credits
 - [K0lb3](https://github.com/K0lb3) for creating UnityPy
 - Bingle for creating NAU and NAU Key Generator for NIKKE
+- [Koshirei]([https://github.com/K0lb3](https://github.com/Koshirei)) for rewritting NAU Key generator in JS and creating naps-splitter script.
 
 Created with love by **VanillaSkyy**
