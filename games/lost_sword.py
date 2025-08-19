@@ -16,6 +16,38 @@ def hide_folder_windows(path: Path):
 PROJECT_ROOT = Path(__file__).parent.parent.resolve()
 LOGS_DIR = PROJECT_ROOT / "logs"
 LOGS_DIR.mkdir(exist_ok=True)
+CONFIG_FILE = PROJECT_ROOT / "config.txt"
+
+def get_settings_path():
+    if CONFIG_FILE.is_file():
+        with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith("#") or not line:
+                    continue
+                key, sep, value = line.partition("=")
+                if key.strip() == "lost_sword_path" and value.strip():
+                    return Path(value.strip())
+    
+    path_str = input("Enter path to Lost Sword asset folder: ").strip()
+    path = Path(path_str)
+
+    try:
+        lines = []
+        if CONFIG_FILE.is_file():
+            with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+                lines = f.readlines()
+
+        lines = [line for line in lines if not line.lstrip().startswith("lost_sword_path")]
+        lines.append(f"lost_sword_path = {path}\n")
+
+        with open(CONFIG_FILE, "w", encoding="utf-8") as f:
+            f.writelines(lines)
+        print(f"[INFO] Saved lost_sword_path to {CONFIG_FILE}")
+    except Exception as e:
+        print(f"[WARNING] Failed to save config: {e}")
+    
+    return path
 
 def run(output_folder: Path):
     now = datetime.now()
@@ -26,8 +58,7 @@ def run(output_folder: Path):
         with open(log_file, "a", encoding="utf-8") as f:
             print(*args, **kwargs, file=f)
 
-    input_path = input("Enter path to Lost Sword .xapk file: ").strip()
-    input_path = Path(input_path)
+    input_path = get_settings_path()
 
     if not input_path.exists() or input_path.suffix.lower() != ".xapk":
         log(f"[ERROR] You must provide a valid .xapk file. Got: {input_path}")

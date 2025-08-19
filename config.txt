@@ -1,7 +1,40 @@
-# Number of processes to use for extraction. Set 0 to use all available CPU cores. 
-# More cores = Faster Extraction. Test what works best for you. Be careful and monitor your CPU usage, using max cores while multi-tasking might crash your computer
-num_processes = 6
+##################################
+### Multiprocessing Settings
+##################################
 
-# You can set your NIKKE settings.json path here and make the process fully automatic
-# If you let it empty, you'll need to manually enter the path the first time you run NIKKE. It will be saved so you won't need to manually set it again
-nikke_settings_json_path = D:\Nikke\NIKKE\game\nikke_Data\StreamingAssets\aa\settings.json
+# Number of processes to use for extraction. Set 0 to use all available CPU cores. 
+# More cores = Faster Extraction. Test what works best for you. Be careful and monitor your CPU usage, using max cores while multi-tasking might crash your computer.
+num_processes = 2
+
+##################################
+### Game Paths
+##################################
+
+# You can set your game paths here before running the program. You can also leave them empty and it will be saved on the first game-specific run.
+
+## Azur Lane
+azur_lane_path = 
+
+## Blue Archive
+blue_archive_path = 
+
+## Brown Dust 2
+bd2_path = 
+
+## Lost Sword
+lost_sword_path = 
+
+## NIKKE
+nikke_settings_json_path = 
+
+## Resonance Solstice
+resonance_solstice_path = 
+
+## Silver and Blood
+sab_path =  
+
+## Starseed: Asnia Trigger
+starseed_path = 
+
+## Trickcal: Chibi Go
+trickcal_path = 

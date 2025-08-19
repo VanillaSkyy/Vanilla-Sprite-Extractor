@@ -10,6 +10,38 @@ UnityPy.config.FALLBACK_UNITY_VERSION = "2022.3.15f1"
 PROJECT_ROOT = Path(__file__).parent.parent.resolve()
 LOGS_DIR = PROJECT_ROOT / "logs"
 LOGS_DIR.mkdir(exist_ok=True)
+CONFIG_FILE = PROJECT_ROOT / "config.txt"
+
+def get_settings_path():
+    if CONFIG_FILE.is_file():
+        with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith("#") or not line:
+                    continue
+                key, sep, value = line.partition("=")
+                if key.strip() == "bd2_path" and value.strip():
+                    return Path(value.strip())
+    
+    path_str = input("Enter path to Brown Dust 2 asset folder: ").strip()
+    path = Path(path_str)
+
+    try:
+        lines = []
+        if CONFIG_FILE.is_file():
+            with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+                lines = f.readlines()
+
+        lines = [line for line in lines if not line.lstrip().startswith("bd2_path")]
+        lines.append(f"bd2_path = {path}\n")
+
+        with open(CONFIG_FILE, "w", encoding="utf-8") as f:
+            f.writelines(lines)
+        print(f"[INFO] Saved bd2_path to {CONFIG_FILE}")
+    except Exception as e:
+        print(f"[WARNING] Failed to save config: {e}")
+    
+    return path
 
 def run(output_folder: Path):
     now = datetime.now()
@@ -20,8 +52,7 @@ def run(output_folder: Path):
         with open(log_file, "a", encoding="utf-8") as f:
             print(*args, **kwargs, file=f)
 
-    input_folder = input("Enter path to Brown Dust 2 asset folder: ").strip()
-    input_folder = Path(input_folder)
+    input_folder = get_settings_path()
 
     if not input_folder.exists() or not input_folder.is_dir():
         log(f"[ERROR] Input folder not found: {input_folder}")
